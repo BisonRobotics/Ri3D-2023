@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
+
 public class Constants {
     
     public static class DrivetrainConstants {
@@ -24,6 +27,9 @@ public class Constants {
     public static class ControllerConstants {
         public static final int DEVICE_ID_DRIVER_CONTROLLER = 0;
         public static final int DEVICE_ID_OPERATOR_CONTROLLER = 1;
+
+        public static final int BUTTON_OPEN_CLAW = XboxController.Button.kB.value;
+        public static final int BUTTON_CLOSE_CLAW = XboxController.Button.kA.value;
     }
 
 }
