@@ -12,11 +12,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExtendoSubsystem extends SubsystemBase {
     
-    private final WPI_TalonSRX motor = new WPI_TalonSRX(DEVICE_ID_EXTENDO);
+    private final WPI_TalonSRX motor;
 
     public ExtendoSubsystem() {
         TalonSRXConfiguration talonConfig = new TalonSRXConfiguration();
-        talonConfig.openloopRamp = RAMP_RATE;   
+        talonConfig.openloopRamp = RAMP_RATE;
+
+        this.motor = new WPI_TalonSRX(DEVICE_ID_EXTENDO);
+        motor.configAllSettings(talonConfig);
     }
 
     public void extend() {
