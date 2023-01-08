@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.DrivetrainConstants.DEVIDE_ID_LEFT_LEADER;
 import static frc.robot.Constants.DrivetrainConstants.DEVIDE_ID_LEFT_FOLLOWER;
 import static frc.robot.Constants.DrivetrainConstants.DEVIDE_ID_RIGHT_LEADER;
-import static frc.robot.Constants.DrivetrainConstants.SLEW_RATE;
+import static frc.robot.Constants.DrivetrainConstants.RAMP_RATE;
 import static frc.robot.Constants.DrivetrainConstants.DEVIDE_ID_RIGHT_FOLLOWER;
 
 import com.revrobotics.CANSparkMax;
@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DrivetrainSubsystem extends SubsystemBase {
     
     private final DifferentialDrive diffDrive;
-    private final SlewRateLimiter rateLimiter = new SlewRateLimiter(SLEW_RATE);
 
     public DrivetrainSubsystem() {
         CANSparkMax leftLeader = new CANSparkMax(DEVIDE_ID_LEFT_LEADER, MotorType.kBrushless);
@@ -39,14 +38,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
     private void configureCANSparkMax(CANSparkMax controller) {
         controller.restoreFactoryDefaults();
         controller.setIdleMode(IdleMode.kBrake);
+        controller.setOpenLoopRampRate(RAMP_RATE);
+        controller.setClosedLoopRampRate(RAMP_RATE);
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squareInputs) {
-        diffDrive.tankDrive(rateLimiter.calculate(leftSpeed), rateLimiter.calculate(rightSpeed), squareInputs);
+        diffDrive.tankDrive(leftSpeed, rightSpeed, squareInputs);
     }
 
     public void arcadeDrive(double speed, double turnSpeed, boolean squareInputs) {
-        diffDrive.arcadeDrive(rateLimiter.calculate(speed), rateLimiter.calculate(turnSpeed), squareInputs);
+        diffDrive.arcadeDrive(speed, turnSpeed, squareInputs);
     }
 
 }
