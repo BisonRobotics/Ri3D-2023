@@ -5,20 +5,20 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Constants {
     
     public static class DrivetrainConstants {
-        public static final int DEVIDE_ID_LEFT_LEADER = 0;
-        public static final int DEVIDE_ID_LEFT_FOLLOWER = 1;
-        public static final int DEVIDE_ID_RIGHT_LEADER = 2;
-        public static final int DEVIDE_ID_RIGHT_FOLLOWER = 3;
+        public static final int DEVIDE_ID_LEFT_LEADER = 1;
+        public static final int DEVIDE_ID_LEFT_FOLLOWER = 2;
+        public static final int DEVIDE_ID_RIGHT_LEADER = 3;
+        public static final int DEVIDE_ID_RIGHT_FOLLOWER = 4;
 
         public static final double RAMP_RATE = 0.2;
     }
 
     public static class ArmConstants {
-        public static final int DEVIDE_ID_ARM_LEADER = 4;
+        public static final int DEVIDE_ID_ARM_LEADER = 5;
     }
 
     public static class ExtendoConstants {
-        public static final int DEVICE_ID_EXTENDO = 5;
+        public static final int DEVICE_ID_EXTENDO = 6;
     
         public static final double RAMP_RATE = 0.02;
         public static final double EXTENSION_SPEED = 0.5;
