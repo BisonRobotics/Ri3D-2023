@@ -10,6 +10,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,6 +19,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DrivetrainSubsystem extends SubsystemBase {
     
     private final DifferentialDrive diffDrive;
+    private final UsbCamera camera;
+    private boolean slowMode = false;
 
     public DrivetrainSubsystem() {
         CANSparkMax leftLeader = new CANSparkMax(DEVIDE_ID_LEFT_LEADER, MotorType.kBrushless);
@@ -34,6 +38,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
         leftLeader.setInverted(true);
 
         this.diffDrive = new DifferentialDrive(leftLeader, rightLeader);
+
+        this.camera =  CameraServer.startAutomaticCapture();
     }
 
     private void configureCANSparkMax(CANSparkMax controller) {
@@ -44,11 +50,28 @@ public class DrivetrainSubsystem extends SubsystemBase {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed, boolean squareInputs) {
+        if (slowMode) {
+            leftSpeed *= .5;
+            rightSpeed *= .5;
+        }
         diffDrive.tankDrive(leftSpeed, rightSpeed, squareInputs);
     }
 
     public void arcadeDrive(double speed, double turnSpeed, boolean squareInputs) {
+        turnSpeed *= .8;
+        if (slowMode) {
+            speed *= .5;
+            turnSpeed *= .5;
+        }
         diffDrive.arcadeDrive(speed, turnSpeed, squareInputs);
+    }
+
+    public boolean isSlowMode() {
+        return slowMode;
+    }
+
+    public void toggleSlowMode() {
+        slowMode = !slowMode;
     }
 
 }
