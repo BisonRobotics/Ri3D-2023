@@ -31,6 +31,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
+        leftLeader.setInverted(true);
 
         this.diffDrive = new DifferentialDrive(leftLeader, rightLeader);
     }

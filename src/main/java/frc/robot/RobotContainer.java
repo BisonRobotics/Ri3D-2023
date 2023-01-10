@@ -15,11 +15,14 @@ import static frc.robot.Constants.ControllerConstants.DEVICE_ID_DRIVER_CONTROLLE
 import static frc.robot.Constants.ControllerConstants.DEVICE_ID_OPERATOR_CONTROLLER;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveArmCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveExtendoCommand;
 import frc.robot.commands.ManageArmCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
@@ -39,10 +42,12 @@ public class RobotContainer {
 
   public RobotContainer() {
     drivetrainSubsystem.setDefaultCommand(new DriveCommand(drivetrainSubsystem, driverController));
+    armSubsystem.setDefaultCommand(new DriveArmCommand(operatorController, armSubsystem));
+    extendoSubsystem.setDefaultCommand(new DriveExtendoCommand(operatorController, extendoSubsystem));
 
-    ManageArmCommand manageArmCommand = new ManageArmCommand(armSubsystem, extendoSubsystem, () -> currentPosition);
-    armSubsystem.setDefaultCommand(manageArmCommand);
-    extendoSubsystem.setDefaultCommand(manageArmCommand);
+    // ManageArmCommand manageArmCommand = new ManageArmCommand(armSubsystem, extendoSubsystem, () -> currentPosition);
+    // armSubsystem.setDefaultCommand(manageArmCommand);
+    // extendoSubsystem.setDefaultCommand(manageArmCommand);
 
     configureBindings();
   }

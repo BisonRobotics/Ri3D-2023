@@ -5,8 +5,10 @@ import static frc.robot.Constants.ExtendoConstants.EXTENSION_SPEED;
 import static frc.robot.Constants.ExtendoConstants.RAMP_RATE;
 import static frc.robot.Constants.ExtendoConstants.RETRACTION_RATE;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,7 +21,13 @@ public class ExtendoSubsystem extends SubsystemBase {
         talonConfig.openloopRamp = RAMP_RATE;
 
         this.motor = new WPI_TalonSRX(DEVICE_ID_EXTENDO);
+        motor.configFactoryDefault();
         motor.configAllSettings(talonConfig);
+        motor.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void drive(double speed) {
+        motor.set(speed);
     }
 
     public void extend() {

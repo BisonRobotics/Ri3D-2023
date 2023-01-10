@@ -10,11 +10,11 @@ public class Constants {
         public static final int DEVIDE_ID_RIGHT_LEADER = 3;
         public static final int DEVIDE_ID_RIGHT_FOLLOWER = 4;
 
-        public static final double RAMP_RATE = 0.2;
+        public static final double RAMP_RATE = .5;
     }
 
     public static class ArmConstants {
-        public static final int DEVIDE_ID_ARM_LEADER = 5;
+        public static final int DEVIDE_ID_ARM = 5;
     }
 
     public static class ExtendoConstants {
@@ -34,8 +34,8 @@ public class Constants {
         public static final int DEVICE_ID_DRIVER_CONTROLLER = 0;
         public static final int DEVICE_ID_OPERATOR_CONTROLLER = 1;
 
-        public static final int BUTTON_OPEN_CLAW = XboxController.Button.kB.value;
-        public static final int BUTTON_CLOSE_CLAW = XboxController.Button.kA.value;
+        public static final int BUTTON_OPEN_CLAW = XboxController.Button.kRightBumper.value;
+        public static final int BUTTON_CLOSE_CLAW = XboxController.Button.kLeftBumper.value;
 
         public static final int BUTTON_ARM_PICKUP = XboxController.Button.kX.value;
         public static final int BUTTON_ARM_DRIVE = XboxController.Button.kY.value;
