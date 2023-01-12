@@ -22,7 +22,7 @@ public class Constants {
     
         public static final double RAMP_RATE = 0.02;
         public static final double EXTENSION_SPEED = 0.5;
-        public static final double RETRACTION_RATE = 0.5;
+        public static final double RETRACTION_SPEED = 0.5;
     }
 
     public static class ClawConstants {
@@ -36,12 +36,6 @@ public class Constants {
 
         public static final int BUTTON_OPEN_CLAW = XboxController.Button.kRightBumper.value;
         public static final int BUTTON_CLOSE_CLAW = XboxController.Button.kLeftBumper.value;
-
-        public static final int BUTTON_ARM_PICKUP = XboxController.Button.kX.value;
-        public static final int BUTTON_ARM_DRIVE = XboxController.Button.kY.value;
-        public static final int BUTTON_ARM_LOW = XboxController.Button.kLeftBumper.value;
-        public static final int BUTTON_ARM_MID = XboxController.Button.kRightBumper.value;
-        public static final int BUTTON_ARM_HIGH = XboxController.Button.kStart.value;
     }
 
 }

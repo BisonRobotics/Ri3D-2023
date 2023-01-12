@@ -3,12 +3,11 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.ExtendoConstants.DEVICE_ID_EXTENDO;
 import static frc.robot.Constants.ExtendoConstants.EXTENSION_SPEED;
 import static frc.robot.Constants.ExtendoConstants.RAMP_RATE;
-import static frc.robot.Constants.ExtendoConstants.RETRACTION_RATE;
+import static frc.robot.Constants.ExtendoConstants.RETRACTION_SPEED;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -35,7 +34,7 @@ public class ExtendoSubsystem extends SubsystemBase {
     }
 
     public void retract() {
-        motor.set(RETRACTION_RATE);
+        motor.set(RETRACTION_SPEED);
     }
 
 }
