@@ -52,7 +52,7 @@ public class RobotContainer {
     // Untested, but basic auto to raise arm and drop cube on top level, then lower arm and back up onto the charging station
     return new RunCommand(() -> armSubsystem.drive(.5), armSubsystem).withTimeout(2)
                   .andThen(new RunCommand(() -> extendoSubsystem.drive(.5), extendoSubsystem).withTimeout(2))
-                  .andThen(new RunCommand(clawSubsystem::open, clawSubsystem))
+                  .andThen(Commands.runOnce(clawSubsystem::open, clawSubsystem))
                   .andThen(new RunCommand(() -> extendoSubsystem.drive(-.5), extendoSubsystem).withTimeout(2))
                   .andThen(new RunCommand(() -> armSubsystem.drive(-.5), armSubsystem).withTimeout(2))
                   .andThen(new RunCommand(() -> drivetrainSubsystem.arcadeDrive(-.5, 0, false), drivetrainSubsystem).withTimeout(2));
